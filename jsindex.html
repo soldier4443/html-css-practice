@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js"></script>
+</head>
+
+<body onload="showDate()" id="body">
+
+  <div class="header">
+    <h1 id="heading">Learn JavaScript</h1>
+  </div>
+
+  <div class="container">
+    <button onclick="onClick()">call onClick()</button>
+    <button onclick="this.innerHTML = 'You Clicked!'">change name...</button>
+    <button onclick="changeText(this)">Better way to change name</button>
+  </div>
+
+  <br>
+  <div class="container">
+    <button onclick="changeHeading()">Change heading</button>
+    <button onmouseover="showDate()" onmouseout="clearDate()">Show date</button>
+    <h1 id="time"></h1>
+  </div>
+
+  <script>
+    function onClick() {
+      alert("You clicked!");
+    }
+
+    function changeText(id) {
+      id.innerHTML = 'You Clicked!';
+    }
+
+    function changeHeading() {
+      var heading = document.getElementById('heading');
+      heading.innerHTML = "You Clicked!";
+    }
+
+    function showDate() {
+      var time = document.getElementById('time');
+      time.innerHTML = Date();
+    }
+
+    function clearDate() {
+      var time = document.getElementById('time');
+      time.innerHTML = '';
+    }
+  </script>
+
+  <div class="container">
+    <form name="myForm" onsubmit="return validateForm()">
+      <div>
+        <label>First Name: </label>
+        <input type="text" name="firstName" id="firstName">
+      </div>
+
+      <div>
+        <label>Last Name: </label>
+        <input type="text" name="lastName" id="lastName">
+      </div>
+
+      <div>
+        <label>Background: </label>
+        <select name="background" id="background" onchange="changeBackground(this)">
+          <option value="red">Red</option>
+          <option value="blue">Blue</option>
+          <option value="green">Green</option>
+        </select>
+      </div>
+
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
+  <script>
+    function changeBackground(x) {
+      var body = document.getElementById('body');
+      body.style.backgroundColor = x.value;
+    }
+  
+    function validateForm() {
+      var firstName = document.forms["myForm"]["firstName"].value;
+
+      if (firstName == null || firstName == "") {
+        alert("First name is required");
+        return false;
+      }
+
+      var lastName = document.forms["myForm"]["lastName"].value;
+      
+      if (lastName == null || lastName == "") {
+        alert("Last name is required");
+        return false;
+      }
+    }
+
+  </script>
+
+</body>
+
+</html>
